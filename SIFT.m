@@ -87,4 +87,5 @@ features = compute_descriptors( features, gauss_pyr, sift_descr_width, sift_desc
 % sort features by decreasing scale and move from CvSeq to array
 features = sort_scale(features);
 
-
+%% ÏÔÊ¾ÌØÕ÷µã
+draw_lowe_feature(init_img, features);
