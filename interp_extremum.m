@@ -39,8 +39,8 @@ if abs(contr) < sift_contr_thr / sift_intvls
     return
 end
 feat.flags = 1;
-feat.x = (c + xc) * 2 ^ octv;
-feat.y = (r + xr) * 2 ^ octv;
+feat.x = (c + xc) * 2 ^ (octv - 1);
+feat.y = (r + xr) * 2 ^ (octv - 1);
 img_pt.x = feat.x;
 img_pt.y = feat.y;
 feat.img_pt = img_pt;
