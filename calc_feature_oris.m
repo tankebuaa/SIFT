@@ -4,7 +4,7 @@
 %  there is more than one dominant orientation at a given feature location.
 % ----------------------------
 
-function features = calc_feature_oris(features, gauss_pyr, sift_ori_hist_bins, sift_ori_radius, sift_ori_sig_fctr, sift_ori_smooth_passes, sift_ori_peak_ratio)
+function [features, sum] = calc_feature_oris(features, gauss_pyr, sift_ori_hist_bins, sift_ori_radius, sift_ori_sig_fctr, sift_ori_smooth_passes, sift_ori_peak_ratio)
 % 特征点序列中特征点个数
 [N, ~] = size(features);
 % 遍历
@@ -31,4 +31,5 @@ for i = 1:N
 end
 [M, ~] = size(features);
    features = features(N+1:M);
+[sum, ~] = size(features);
 end

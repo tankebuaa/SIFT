@@ -1,14 +1,6 @@
 % -------------------------------------SIFT.m------------------------------
-% /** holds feature data relevant to detection */
-% struct detection_data
-% {
-%  int r;
-%  int c;
-%  int octv;
-%  int intvl;
-%  double subintvl;
-%  double scl_octv;
-% };
+% Detect SIFT features.
+%        Copyright By Tan Ke. 
 % --------------------------------------------
 
 clear all;
@@ -26,7 +18,7 @@ sift_intvls = 3;
 % default threshold on keypoint contrast |D(x)|
 sift_contr_thr = 0.04;
 % default threshold on keypoint ratio of principle curvatures
-sift_curv_thr = 10;
+sift_curv_thr = 3;
 % width of border in which to ignore keypoints
 sift_img_border = 5;
 % maximum steps of keypoint interpolation before failure
@@ -56,6 +48,7 @@ sift_int_descr_fctr = 512.0;
 image = imread('scene.pgm');
 img = double(image) / 255.0;
 
+disp('detect sift features...');
 % 获得初始图像
 init_img = create_init_image(img, sift_img_dbl, sift_sigma, sift_init_sigma);
 
@@ -78,9 +71,12 @@ features = calc_feature_scales(features, sift_sigma, sift_intvls, sift_img_dbl);
 
 %% 特征点方向赋值，完成此步骤后，每个特征点有三个信息：位置、尺度、方向
 % 计算每个特征点的梯度直方图，找出其主方向，若一个特征点有不止一个主方向，将其分为两个特征点
-features = calc_feature_oris( features, gauss_pyr, sift_ori_hist_bins, sift_ori_radius, sift_ori_sig_fctr, sift_ori_smooth_passes, sift_ori_peak_ratio);
+[features, N] = calc_feature_oris( features, gauss_pyr, sift_ori_hist_bins, sift_ori_radius, sift_ori_sig_fctr, sift_ori_smooth_passes, sift_ori_peak_ratio);
 
+disp(['Done! Get ', num2str(N), ' interesting points']);
 %% 计算特征描述子
+disp('Solve the descriptors and drawing ...');
+
 % 计算特征点序列中每个特征点的特征描述子向量 
 features = compute_descriptors( features, gauss_pyr, sift_descr_width, sift_descr_hist_bins, sift_descr_scl_fctr, sift_descr_mag_thr, sift_int_descr_fctr);
 
@@ -88,4 +84,4 @@ features = compute_descriptors( features, gauss_pyr, sift_descr_width, sift_desc
 features = sort_scale(features);
 
 %% 显示特征点
-draw_lowe_feature(init_img, features);
+draw_lowe_feature(img, features);

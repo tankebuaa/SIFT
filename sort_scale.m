@@ -13,7 +13,4 @@ for i = 1:k-2
         end
     end
 end
-for i = 1:k
-   features{i} = rmfield(features{i}, 'ddata');
-end
 end

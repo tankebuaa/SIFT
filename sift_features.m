@@ -14,9 +14,9 @@ sift_init_sigma = 0.5;
 % default number of sampled intervals per octave
 sift_intvls = 3;
 % default threshold on keypoint contrast |D(x)|
-sift_contr_thr = 0.04;
+sift_contr_thr = 0.03;
 % default threshold on keypoint ratio of principle curvatures
-sift_curv_thr = 10;
+sift_curv_thr = 3;
 % width of border in which to ignore keypoints
 sift_img_border = 5;
 % maximum steps of keypoint interpolation before failure

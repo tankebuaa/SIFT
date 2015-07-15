@@ -15,7 +15,7 @@ while i < sift_max_interp_steps
     c = c + round(xc);      % x坐标修正
     r = r + round(xr);      % y坐标修正
     intvl = intvl + round(xi);  % sigma方向，即层方向修正
-    
+        
     % 如果坐标修正超出范围，则结束插值，返回NULL
     if intvl < 2 || intvl > sift_intvls+1 || r < sift_img_border || c < sift_img_border || r >= rows - sift_img_border || c >= cols - sift_img_border
         feat.flags = 0;

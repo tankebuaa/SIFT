@@ -10,11 +10,11 @@ kdtree_bbf_max_nn_chks = 200;
 % initial # of priority queue elements for which to allocate space 
 minpq_init_nallocd = 512;
 % threshold on squared ratio of distances between NN and 2nd NN 
-NN_SQ_DIST_RATIO_THR = 0.59;
+NN_SQ_DIST_RATIO_THR = 0.49;
 
 
 img1 = imread('scene.pgm');
-img2 = imread('basmati.pgm');
+img2 = imread('box.pgm');
 [r1, c1] = size(img1);
 [r2, c2] = size(img2);
 img_stack = 255.0 * ones(max(r1,r2), c1+c2);
@@ -40,7 +40,7 @@ for i = 1:n1
       start_y = feat1{i}.y;
       end_x = nbrs{1}.x + c1;
       end_y = nbrs{1}.y;
-      line([start_x end_x], [start_y end_y],'LineWidth',1,'Color',[1 1 1]);
+      line([start_x end_x], [start_y end_y],'LineWidth',1,'Color',[0 1 0]);
       hold on;
    end
 end

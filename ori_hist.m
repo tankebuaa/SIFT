@@ -13,8 +13,8 @@ for i = -rad:rad
       [mag, ori, flag] = calc_grad_mag_ori(img, r + i, c + j);
       if flag
           w = exp(-(i*i + j*j) / exp_denom);
-          bin = round(n * (ori + pi) / PI2);
-          if bin >= n
+          bin = ceil(n * (ori + pi) / PI2);
+          if bin > n
               bin = 1;
           elseif bin <1
               bin = n;
